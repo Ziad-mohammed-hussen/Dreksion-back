@@ -48,20 +48,20 @@ const connectDB = async () => {
   try {
     const conn = await mongoose.connect(MONGO_URI);
     console.log(`✅ MongoDB Connected: ${conn.connection.name}`);
-    console.log(`📊 Database URL: ${MONGO_URI}`);
+    console.log(` Database URL: ${MONGO_URI}`);
 
     // إنشاء الـ Collections تلقائياً لتظهر فوراً في MongoDB Compass
     const modelKeys = Object.keys(mongoose.models);
     for (const modelName of modelKeys) {
       await mongoose.models[modelName].createCollection();
     }
-    console.log(`📁 All (${modelKeys.length}) Collections created successfully in Compass!`);
+    console.log(` All (${modelKeys.length}) Collections created successfully in Compass!`);
   } catch (error) {
-    console.error("❌ MongoDB Connection Error:", error.message);
+    console.error(" MongoDB Connection Error:", error.message);
   }
 };
 
 app.listen(PORT, async () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(` Server is running on port ${PORT}`);
   await connectDB();
 });
